@@ -1,5 +1,6 @@
 package Equals;
 
+
 public class Complete {
 	
 	public static void main(String args[])
@@ -10,6 +11,7 @@ public class Complete {
 			public void run()
 			{
 				try {
+					System.out.println("beeeforee");
 					System.out.println("Hey");
 					eq.producer();
 				} catch (InterruptedException e) {

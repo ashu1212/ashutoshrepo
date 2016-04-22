@@ -10,6 +10,7 @@ public class Complete {
 			public void run()
 			{
 				try {
+					System.out.println("Hey");
 					eq.producer();
 				} catch (InterruptedException e) {
 					e.printStackTrace();

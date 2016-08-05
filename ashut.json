@@ -1,0 +1,6 @@
+{
+  "iot-frontend": "19",
+  "auth-service": "14",
+  "iot-service": "18",
+  "gateway-service": "16"
+}

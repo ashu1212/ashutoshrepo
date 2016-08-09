@@ -34,7 +34,10 @@ function writeFile(){
  function uploadToRepository(){
    git
      .add('./*')
-     .commit("commited")
+     .commit("commited",function(err, data){
+       console.log(err);
+       console.log(data);
+     })
      .removeRemote('origin')
      .addRemote('origin','https://github.com/ashu1212/ashutoshrepo.git')
      .pull('origin','master', function(err, update){

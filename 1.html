@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<script type="text/javascript">
+var auth, iotfront, iotser, gateway;
+  function readFile(callback){
+    fs = require('fs');
+    fs.readFile('/home/ashutosh/electron-apps/DeployerApp/ashu1212/jsonfile.json', 'utf8', function (err,data) {
+      if (err) {
+       console.log(err);
+       if (callback)
+      callback();
+      }
+      else {
+
+        console.log('in 1.html');
+         var JsonObject= JSON.parse(data);
+          console.log(JsonObject);
+
+         auth=(JsonObject['auth-service']);
+          console.log(auth);
+
+         iotfront=(JsonObject['iot-frontend']);
+          console.log(iotfront);
+
+         iotser=(JsonObject['iot-service']);
+          console.log(iotser);
+
+         gateway=(JsonObject['gateway-service']);
+          console.log(gateway);
+
+         var authText = document.getElementById('authser');
+         var iotfronText = document.getElementById('front');
+         var gatewayText = document.getElementById('gateway');
+         var iotSerText = document.getElementById('iotservi');
+
+         authText.value = auth;
+         iotfronText.value = iotfront;
+         gatewayText.value = gateway;
+         iotSerText.value = iotser;
+
+        if (callback)
+        callback();
+       }
+      });
+  }
+</script>
+
+<body>
+<style>
+body{
+    padding: 0;
+    margin: 0;
+    font-family: arial;
+    font-size: 25px;
+	  color:#228;
+    text-align: center;
+}
+</style>
+<form>
+
+<h1><center>CURRENT STATUS</center></h1>
+  iot-frontend
+  &nbsp;&nbsp;
+  <input type ="text" id="front" name="iotfront" readonly="true"/>
+ <br>
+ <br>
+  iot-service
+  &nbsp;&nbsp;
+  <input type="text" id="iotservi" name="iotservices" readonly="true"/>
+ <br>
+ <br>
+ auth-service
+ &nbsp;&nbsp;
+  <input type="text" id="authser" name="authservices" readonly="true"/>
+ <br>
+ <br>
+ gateway-service
+ &nbsp;&nbsp;
+  <input type="text" id="gateway" name="gatewayservices" readonly="true"/>
+	<br>
+  <br>
+  <input TYPE="button" value="back" VALUE="Back" onclick="window.location.href='index.html'">
+  <input TYPE="button"  name="button" id="getData" onclick="readFile()" value="getData">
+ </form>
+</body>
+</html>

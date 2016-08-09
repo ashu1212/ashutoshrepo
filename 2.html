@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<script>
+
+var git = require('simple-git')();
+var gateway, front, iotser, auth;
+function writeFile(){
+ fs = require('fs');
+ var filLocation='/home/ashutosh/electron-apps/DeployerApp/ashu1212/jsonfile.json';
+ fs.readFile(filLocation, 'utf8', function (err,data) {
+   if(err){
+     console.log("no repository found");
+   }
+   else{
+     var JsonObject= JSON.parse(data);
+     gateway = document.getElementById("myTextgateway").value;
+     front = document.getElementById("myTextfront").value;
+     auth = document.getElementById("myTextauth").value;
+     iotser = document.getElementById("myTextiot").value;
+     JsonObject['gateway-service'] = gateway;
+     JsonObject['iot-service'] = iotser;
+     JsonObject['iot-frontend'] = front;
+     JsonObject['auth-service'] = auth;
+      fs.writeFileSync(filLocation, JSON.stringify(JsonObject));
+    }
+   });
+ }
+
+ //functon to add file to git repository
+ function uploadToRepository(){
+   git
+     .init()
+     .add('./*')
+     .commit("commited")
+     .addRemote('origin','https://github.com/ashu1212/ashutoshrepo.git')
+     .push('origin','master');
+}
+
+</script>
+
+<body>
+
+<style>
+body
+ {
+    padding: 0;
+    margin: 0;
+    font-family: arial;
+    font-size: 25px;
+	  color: #228;
+    text-align: center;
+}
+
+</style>
+<form>
+<h1><center>UPDATE STATUS</center></h1>
+  iot-frontend
+  &nbsp;&nbsp;
+  <input type="in" id="myTextfront" name="iotfrontend">
+ <br>
+ <br>
+  iot-service
+  &nbsp;&nbsp;
+  <input type="text" id="myTextiot" name="iotservice">
+ <br>
+ <br>
+ auth-service
+ &nbsp;&nbsp;
+  <input type="text" id="myTextauth" name="authser">
+ <br>
+ <br>
+ gateway-service
+ &nbsp;&nbsp;
+  <input type="text" id="myTextgateway" name="gatewayserv">
+	<center><br>
+	<button type="button" value="jsonsave"  onclick="writeFile()">Save</button>
+
+
+  <button type="button" value="jsonupdate"  onclick="uploadToRepository()">Upload</button>
+	<button type="button" value="jsondeploy" onclick="alert('deployed to jenkins')">Deploy</button>
+    </center>
+	<br>
+	<br>
+  <input TYPE="button" VALUE="Back" onclick="window.location.href='index.html'">
+</form>
+
+</body>
+</html>

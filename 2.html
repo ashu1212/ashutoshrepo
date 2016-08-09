@@ -32,7 +32,6 @@ function writeFile(){
  //functon to add file to git repository
  function uploadToRepository(){
    git
-     .init()
      .add('./*')
      .commit("commited")
      .addRemote('origin','https://github.com/ashu1212/ashutoshrepo.git')

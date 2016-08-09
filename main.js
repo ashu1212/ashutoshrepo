@@ -27,16 +27,15 @@ function readFile(callback){
     });
 }
 
-function pullCommand(){
-      git
+ function pullCommand(){
+   git
+        .addRemote('origin', 'https://github.com/ashu1212/ashutoshrepo.git')
         .pull(function(err, update) {
            if(update && update.summary.changes) {
               require('child_process').exec('npm restart');
            }
       });
 }
-
-
 //Function to perform git clone
 function  gitCommand(){
 console.log('Before cloning');

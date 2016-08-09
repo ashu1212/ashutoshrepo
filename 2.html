@@ -37,6 +37,7 @@ function writeFile(){
      .commit("commited")
      .removeRemote('origin')
      .addRemote('origin','https://github.com/ashu1212/ashutoshrepo.git')
+     .pull('origin','master')
      .push('origin','master');
 }
 

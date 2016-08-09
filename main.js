@@ -27,6 +27,14 @@ function readFile(callback){
     });
 }
 
+function pullCommand(){
+      git
+        .pull(function(err, update) {
+           if(update && update.summary.changes) {
+              require('child_process').exec('npm restart');
+           }
+      });
+}
 
 
 //Function to perform git clone
@@ -37,6 +45,7 @@ git
    if(err)
    {
      console.log("repository already found");
+     pullCommand();
        readFile(function(){
         //  writeFile();
          readFile();
@@ -45,29 +54,18 @@ git
    else
     {
     console.log('Cloned successfully');
+    pullCommand();
     readFile(
       function(){
       //  writeFile();
         console.log('new update value');
-        readFile();
+        //readFile();
     }
     );
    }
  });
 }
 
-//functon to add file to git repository
-function gitAddCommand(){
-
-
-}
-
-//function to commit a changes
-function gitCommitCommand(){
-
-}
-
-//
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({

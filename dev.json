@@ -1,7 +1,1 @@
-
-{
-  "iot-frontend": "12",
-  "auth-service": "13",
-  "iot-service": "18",
-  "gateway-service": "18"
-}
+{"iot-frontend":"10","auth-service":"12","iot-service":"11","gateway-service":"13"}
